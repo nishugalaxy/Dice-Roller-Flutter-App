@@ -25,6 +25,15 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 1;
   int rightDiceNumber = 3;
+ 
+  changeDiceFace() {
+    setState(() {
+      leftDiceNumber = Random().nextInt(6) + 1;
+      rightDiceNumber = Random().nextInt(6) + 1;
+      print(leftDiceNumber);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -33,25 +42,14 @@ class _DicePageState extends State<DicePage> {
           Expanded(
             child: FlatButton(
               splashColor: Colors.black12,
-              
-              onPressed: () {
-                setState(() {
-                  leftDiceNumber = Random().nextInt(6) + 1;
-                  print(leftDiceNumber);
-                });
-              },
+              onPressed: changeDiceFace,
               child: Image.asset('images/dice$leftDiceNumber.png'),
             ),
           ),
           Expanded(
             child: FlatButton(
               splashColor: Colors.black12,
-              onPressed: () {
-                setState(() {
-                  rightDiceNumber = Random().nextInt(6) + 1;
-                  print(rightDiceNumber);
-                });
-              },
+              onPressed: changeDiceFace,
               child: Image.asset('images/dice$rightDiceNumber.png'),
             ),
           ),
